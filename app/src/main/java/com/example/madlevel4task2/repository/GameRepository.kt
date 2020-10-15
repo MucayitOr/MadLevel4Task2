@@ -1,13 +1,16 @@
 package com.example.madlevel4task2
 
 import android.content.Context
+import com.example.madlevel4task2.dao.GameDao
+import com.example.madlevel4task2.database.GameDatabase
+import com.example.madlevel4task2.model.Game
+
 
 class GameRepository(context: Context) {
-
     private val gameDao: GameDao
 
     init {
-        val database = GameRockPaperScissorsRoomDatabase.getDatabase(context)
+        val database = GameDatabase.getDatabase(context)
         gameDao = database!!.gameDao()
     }
 
@@ -15,16 +18,15 @@ class GameRepository(context: Context) {
         return gameDao.getAllGames()
     }
 
-    suspend fun insertProduct(game: Game) {
+    suspend fun insertGame(game: Game) {
         gameDao.insertGame(game)
     }
 
-    suspend fun deleteProduct(game: Game) {
+    suspend fun deleteGame(game: Game) {
         gameDao.deleteGame(game)
     }
 
     suspend fun deleteAllGames() {
         gameDao.deleteAllGames()
     }
-
 }

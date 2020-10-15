@@ -1,14 +1,11 @@
-package com.example.madlevel4task2
+package com.example.madlevel4task2.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
+import com.example.madlevel4task2.model.Game
 
 @Dao
 interface GameDao {
-
-    @Query("SELECT * FROM gameTable")
+    @Query("SELECT * FROM game_table")
     suspend fun getAllGames(): List<Game>
 
     @Insert
@@ -17,7 +14,6 @@ interface GameDao {
     @Delete
     suspend fun deleteGame(game: Game)
 
-    @Query("DELETE FROM gameTable")
+    @Query("DELETE FROM game_table")
     suspend fun deleteAllGames()
-
 }
